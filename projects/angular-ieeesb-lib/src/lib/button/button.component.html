@@ -1,0 +1,2 @@
+<a class="input-container w-100" [class.disabled]="disabled" [class.text-danger]="danger" [routerLink]="" *ngIf="!link"><span class="text-center w-100">{{label}}</span></a>
+<a class="input-container w-100" [class.disabled]="disabled" [class.text-danger]="danger" [routerLink]="[link]" *ngIf="link"><span class="text-center w-100">{{label}}</span></a>

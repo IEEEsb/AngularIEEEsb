@@ -1,0 +1,47 @@
+<div class="main">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col" *ngFor="let label of labels"><span>{{label}}</span></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<ng-container *ngIf="items && items.length > 0">
+				<tr class="" *ngFor="let item of items">
+					<ng-container *ngFor="let key of keys; let i = index">
+						<th scope="row" *ngIf="i === 0">
+							<ng-container *ngIf="link">
+								<a class="" [routerLink]="[link + (item | property:linkKey)]">
+									<span *ngIf="key.toLowerCase().includes('date')">{{item | property:key | date:dateFormat}}</span>
+									<span *ngIf="!key.toLowerCase().includes('date')">{{item | property:key}}</span>
+								</a>
+							</ng-container>
+							<ng-container *ngIf="!link">
+								<span *ngIf="key.toLowerCase().includes('date')">{{item | property:key | date:dateFormat}}</span>
+								<span *ngIf="!key.toLowerCase().includes('date')">{{item | property:key}}</span>
+							</ng-container>
+						</th>
+						<td *ngIf="i !== 0">
+							<span *ngIf="key.toLowerCase().includes('date')">{{item | property:key | date:dateFormat}}</span>
+							<span *ngIf="!key.toLowerCase().includes('date')">{{item | property:key}}</span>
+						</td>
+					</ng-container>
+
+					<td>
+						<ieeesb-button [label]="linkLabel" [link]="link + (item | property:linkKey)" (click)="callback($event)" *ngIf="link" [disabled]="item | property:disabled"></ieeesb-button>
+						<ieeesb-button [label]="linkLabel" (click)="callback($event)" *ngIf="!link" [disabled]="item | property:disabled"></ieeesb-button>
+					</td>
+				</tr>
+			</ng-container>
+		</tbody>
+	</table>
+</div>
+<div class="row justify-content-center mt-3 mx-0">
+	<div class="col-auto">
+		<ieeesb-pagination [items]="rawItems" (itemsChange)="items=$event; detectChanges();" pageSize="10"></ieeesb-pagination>
+	</div>
+</div>
+<div *ngIf="!items || items.length <= 0">
+	No hay resultados...
+</div>

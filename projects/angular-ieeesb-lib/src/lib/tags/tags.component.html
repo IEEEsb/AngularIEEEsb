@@ -1,0 +1,14 @@
+<mat-form-field class="w-100">
+	<mat-chip-list #chipList>
+		<mat-chip *ngFor="let chip of item" [selectable]="false" [removable]="true" (removed)="removeTag(chip)" [disabled]="!editing">
+			{{chip}}
+			<mat-icon matChipRemove>cancel</mat-icon>
+		</mat-chip>
+		<input #inputfield [disabled]="!editing" [(ngModel)]="search" [placeholder]="label" [matAutocomplete]="auto" [matChipInputFor]="chipList" (matChipInputTokenEnd)="add($event.value)">
+	</mat-chip-list>
+	<mat-autocomplete #auto="matAutocomplete" (optionSelected)="addTag($event.option.viewValue)">
+		<mat-option *ngFor="let tag of tags" [value]="search">
+			{{tag}}
+		</mat-option>
+	</mat-autocomplete>
+</mat-form-field>

@@ -1,0 +1,5 @@
+<mat-form-field class="w-100">
+	<mat-select [placeholder]="label" [disabled]="!editing" [value]="item" (valueChange)="itemChange.emit($event)">
+		<mat-option [value]="option" *ngFor="let option of options; let i = index;">{{optionsLabels[i]}}</mat-option>
+	</mat-select>
+</mat-form-field>

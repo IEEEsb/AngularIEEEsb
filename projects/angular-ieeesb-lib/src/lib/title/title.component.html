@@ -1,0 +1,16 @@
+<div class="row justify-content-between mb-3">
+	<div class="col-12 col-md-auto">
+		<div class="row">
+			<div class="col-12 col-md-auto text-center align-self-center">
+				<span class="h2">{{title}}</span>
+			</div>
+			<div class="col-12 col-md-6 mt-3 mt-md-0 align-self-center" *ngIf="search !== null && search !== undefined">
+				<ieeesb-search [search]="search" (searchChange)="searchChange.emit($event)"></ieeesb-search>
+			</div>
+		</div>
+	</div>
+	<div class="col-12 col-md-2 col-lg-3 col-xl-3 mt-3 mt-md-0 align-self-center" *ngIf="linkLabel">
+		<ieeesb-button [label]="linkLabel" [link]="link" (click)="callback.emit()" *ngIf="link" [disabled]="disabled"></ieeesb-button>
+		<ieeesb-button [label]="linkLabel" (click)="callback.emit()" *ngIf="!link" [disabled]="disabled"></ieeesb-button>
+	</div>
+</div>

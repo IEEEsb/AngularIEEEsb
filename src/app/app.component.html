@@ -1,0 +1,32 @@
+<ieeesb-loading [loading]="loading"></ieeesb-loading>
+<div class="main w-100">
+	<div class="">
+		<mat-slide-toggle color="primary" [(ngModel)]="loading" (ngModelChange)="toggleChanged()">Cargando...</mat-slide-toggle>
+	</div>
+	<div class="">
+		<mat-form-field>
+			<input matInput [(ngModel)]="delay" placeholder="Delay" type="number">
+		</mat-form-field>
+	</div>
+	<div class="">
+		<ieeesb-tags label="Tags" [item]="items" [tags]="['bebida', 'comida', 'impresora']"></ieeesb-tags>
+	</div>
+	<div class="">
+		<ieeesb-tags label="Tags" [item]="items" [tags]="['bebida', 'comida', 'impresora']" [editing]="false"></ieeesb-tags>
+	</div>
+	<div class="">
+		<ieeesb-select [(item)]="selected" label="Tipo" [options]="['consumable', 'lendable', 'static']" [optionsLabels]="['Consumible', 'Prestable', 'Estático']"></ieeesb-select>
+	</div>
+	<div class="">
+		<ieeesb-select [(item)]="selected" label="Tipo" [options]="['consumable', 'lendable', 'static']" [optionsLabels]="['Consumible', 'Prestable', 'Estático']" [editing]="false"></ieeesb-select>
+	</div>
+	<div class="">
+		<div (click)="getFile()">Seleccionar archivo</div>
+	</div>
+	<div class="">
+		<div (click)="getImage()">Seleccionar imagen</div>
+	</div>
+	<div class="" *ngIf="file">
+		<a [href]="fileUrl">{{file.name}}</a>
+	</div>
+</div>
